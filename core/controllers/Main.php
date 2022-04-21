@@ -13,12 +13,6 @@ class Main
 
     public function index()
     {
-
-        $dados = [
-            'titulo' => APP_NAME,
-            'clientes' => ['Joao', 'Ana', 'Nadia']
-        ];
-
         Store::Layout([
             'layouts/html_header',
             'layouts/header',
@@ -26,16 +20,18 @@ class Main
             'layouts/footer',
             'layouts/html_footer',
 
-        ], $dados);
+        ]);
     }
 
     public function store()
     {
-
+        $dados = [
+            'titulo' => APP_NAME,
+            'clientes' => ['Joao', 'Ana', 'Nadia']
+        ];
         // TRAZER TODOS PRODUTOS
         $produtos = new Produtos();
         $store = $produtos->lista_produtos_disponiveis();
-
         Store::Layout([
             'layouts/html_header',
             'layouts/header',
@@ -43,7 +39,7 @@ class Main
             'layouts/footer',
             'layouts/html_footer',
 
-        ], $store);
+        ],['produtos' => $store]);
     }
 
     public function carrinho()

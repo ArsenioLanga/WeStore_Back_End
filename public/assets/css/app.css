@@ -1,4 +1,12 @@
 /* app.css */
+
+* {
+    box-shadow: inset 0px 0px 1px rgba(255,0,0,0.5);
+}
+
+.margin{
+    margin-bottom: 10%;
+}
 body a {
     text-decoration: none;
 }
