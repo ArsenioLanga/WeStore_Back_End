@@ -10,6 +10,7 @@ $rotas = [
     'login' => 'main@login',
     'login_submit' => 'main@login_submit',
     'validar_conta' => 'main@validar_conta',
+    'logout' => 'main@logout',
 ];
 
 // DEFINIR A ACCAO POR DEFEITO

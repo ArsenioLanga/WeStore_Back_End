@@ -17,11 +17,13 @@
 
             <!-- VERIFICAR SE EXISTE SESSAO DO CLIENTE -->
                 <?php if(Store::clienteLogado()):?>
-
+<!-- 
                     <a href="?p=minha_conta" class="nav-item">
-                        <?= $_SESSION['usuario'] ?>
-                    </a>
-                    <a href="?p=logout" class="nav-item">Logout</a>
+                        </a> -->
+                        
+                        <i class="fas fa-user"></i>
+                        <!-- <?= $_SESSION['usuario'] ?> -->
+                        <a href="?p=logout" class="nav-item"><i class="fas fa-sign-out-alt"></i></a>
 
                 <?php else: ?>
 

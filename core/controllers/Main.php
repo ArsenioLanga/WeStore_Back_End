@@ -187,12 +187,21 @@ class Main{
 
                 Store::redirect();
             }
-
-       
-
     }
 
 
+    public function logout(){
+        
+        // REMOVER AS VARIAVES DAS SESSAO
+        unset($_SESSION['cliente']); 
+        unset($_SESSION['nome_cliente']); 
+        unset($_SESSION['usuario']); 
+
+        // IR A PAGINA INICIAL
+         Store::redirect();
+
+        
+    }
 
     public function validar_conta(){
          //  VERIFICAR SE EXISTE UM CLIENTE LOGADO?
