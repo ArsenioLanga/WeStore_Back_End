@@ -4,41 +4,59 @@ namespace core\classes;
 
 use Exception;
 
-class Store{
+class Store
+{
 
-  public static function Layout($estruturas, $dados = null){
+  public static function Layout($estruturas, $dados = null)
+  {
 
-    if(!is_array($estruturas)){
-        throw new Exception("Colecao de esctruturas invalida");
+    if (!is_array($estruturas)) {
+      throw new Exception("Colecao de esctruturas invalida");
     }
 
     // VARIAVEIS
-    if(!empty($dados) && is_array($dados)){
+    if (!empty($dados) && is_array($dados)) {
       extract($dados); //cria variaveis com base nos indices
 
     }
 
     // APRESENTAR AS VIEWS DA APLICACAO
 
-    foreach($estruturas as $estrutura){
-        include("../core/views/$estrutura.php"); 
+    foreach ($estruturas as $estrutura) {
+      include("../core/views/$estrutura.php");
     }
   }
 
-  public static function clienteLogado(){
+  public static function clienteLogado()
+  {
 
     // verifica se existe um cliente logado
     return isset($_SESSION['cliente']);
   }
 
-  public static function criarHash($tamanho = 12){
+  public static function criarHash($tamanho = 12)
+  {
 
     // CRIAR HASHES
-      $chars = '01234567890123456789abcdefghijklmnopqrstuvwxyabcdefghijklmnopqrstuvwxyABCDEFGHIJKLMNOPQRSTUVWXYABCDEFGHIJKLMNOPQRSTUVWXY';
-      return substr(str_shuffle($chars), 0, $tamanho);
+    $chars = '01234567890123456789abcdefghijklmnopqrstuvwxyabcdefghijklmnopqrstuvwxyABCDEFGHIJKLMNOPQRSTUVWXYABCDEFGHIJKLMNOPQRSTUVWXY';
+    return substr(str_shuffle($chars), 0, $tamanho);
   }
 
-  public static function redirect($route = ''){
-    header("Location: ". BASE_URL . "?p=$route ");
+  public static function redirect($route = '')
+  {
+    header("Location: " . BASE_URL . "?p=$route ");
   }
-} 
+
+  public static function printData($data)
+  {
+    if (is_array($data)) {
+      echo '<pre>';
+      var_dump($data);
+      die();
+    } else {
+      echo '<pre>';
+      echo $data;
+      die();
+    }
+  }
+}
