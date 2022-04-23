@@ -25,13 +25,17 @@ class Main
 
     public function store()
     {
-        $dados = [
-            'titulo' => APP_NAME,
-            'clientes' => ['Joao', 'Ana', 'Nadia']
-        ];
+        
         // TRAZER TODOS PRODUTOS
         $produtos = new Produtos();
-        $store = $produtos->lista_produtos_disponiveis();
+
+        $categoria = 'todos';
+            if(isset($_GET['c'])){
+                $categoria = $_GET['c'];
+            }
+
+        $store = $produtos->lista_produtos_disponiveis($categoria);
+        
         Store::Layout([
             'layouts/html_header',
             'layouts/header',

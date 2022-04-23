@@ -2,8 +2,10 @@
 
 <div class="container-fluid margin">
     <div class="row">
-        <div class="col-12">
-            <h1>WebStore</h1>  
+        <div class="col-12 text-center my-4">
+            <a href="?p=store&c=todos" class="btn btn-primary">Todos</a>  
+            <a href="?p=store&c=homem" class="btn btn-primary">Homem</a>  
+            <a href="?p=store&c=mulher" class="btn btn-primary">Mulher</a>  
         </div>
     </div>
 
@@ -11,12 +13,12 @@
     <div class="row">
 
     <?php foreach($produtos as $produto):?>
-        <div class="col-sm-3">
-            <div class="text-center p-3">
+        <div class="col-sm-3 p-1">
+            <div class="text-center p-3 card box-produto">
                 <img src="assets/image/produtos/<?=$produto['imagem']?>" class="img-fluid">
                 <h3><?= $produto['nome_produto']?></h3>
                 <h2><?= $produto['preco']?></h2>
-                <p><small><?= $produto['descricao']?></small></p>
+                <!-- <p><small><?= $produto['descricao']?></small></p> -->
                 <div class="">
                     <button>
                         Adicionar ao carinho

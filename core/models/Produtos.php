@@ -8,12 +8,19 @@ use core\classes\Store;
 class Produtos
 {
 
-    public function lista_produtos_disponiveis()
+    public function lista_produtos_disponiveis($categoria)
     {
         // TRAZER TODOS PRODUTOS DISPONIVEIS
         $db = new Database();
-        $resultado = $db->select("SELECT * FROM produtos WHERE stock > 5 AND visivel = 1");
 
+        $sql = ("SELECT *FROM produtos ");
+        $sql .= "WHERE visivel = 1 ";
+        
+            if($categoria == 'homem' || $categoria == 'mulher'){
+                $sql .= "AND categoria = '$categoria'";
+            }
+           
+        $resultado = $db->select($sql);
         return $resultado;
     }    
 
