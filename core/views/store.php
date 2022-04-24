@@ -1,60 +1,44 @@
+<?php 
 
+    print_r($_SESSION);
+
+?>
 
 <div class="container-fluid margin">
     <div class="row">
         <div class="col-12 text-center my-4">
-            <a href="?p=store&c=todos" class="btn btn-primary">Todos</a>  
-            <a href="?p=store&c=homem" class="btn btn-primary">Homem</a>  
-            <a href="?p=store&c=mulher" class="btn btn-primary">Mulher</a>  
+            <a href="?p=store&c=todos" class="btn btn-primary">Todos</a>
+            <?php foreach ($categorias as $categoria) : ?>
+                <a href="?p=store&c=<?= $categoria ?>" class="btn btn-primary">
+                    <?= ucfirst(preg_replace("/\_/", " ", $categoria)) ?>
+                </a>
+            <?php endforeach; ?>
         </div>
     </div>
 
     <!-- LISTAR PRODUTOS -->
     <div class="row">
-
-    <?php foreach($produtos as $produto):?>
-        <div class="col-sm-3 p-1">
-            <div class="text-center p-3 card box-produto">
-                <img src="assets/image/produtos/<?=$produto['imagem']?>" class="img-fluid">
-                <h3><?= $produto['nome_produto']?></h3>
-                <h2><?= $produto['preco']?></h2>
-                <!-- <p><small><?= $produto['descricao']?></small></p> -->
-                <div class="">
-                    <button>
-                        Adicionar ao carinho
-                    </button>
-                </div>
+        <?php if (count($produtos) == 0) : ?>
+            <div class="text-center">
+                <h3>Nao existem produtos disponiveis para esta categoria</h3>
             </div>
-        </div>
-     <?php endforeach;?>
+        <?php else : ?>
+            <?php foreach ($produtos as $produto) : ?>
+                <div class="col-sm-3 p-1">
+                    <div class="text-center p-3 card box-produto">
+                        <img src="assets/image/produtos/<?= $produto['imagem'] ?>" class="img-fluid">
+                        <h3><?= $produto['nome_produto'] ?></h3>
+                        <h2><?= preg_replace("/\./", ",", $produto['preco']. " MZN") ?></h2>
+                        <!-- <p><small><?= $produto['descricao'] ?></small></p> -->
+                        <div class="">
+                            <button class="btn btn-info" onclick="adicionar_carrinho(<?= $produto['id'] ?>)">
+                                <i class="fa fa-shopping-cart"></i>
+                                Adicionar ao carinho
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        <?php endif; ?>
     </div>
 </div>
-
-<!-- 
-    ["id"]=>
-  string(1) "1"
-  ["categoria"]=>
-  string(5) "homem"
-  ["nome_produto"]=>
-  string(16) "t-shirt vermelha"
-  ["descricao"]=>
-  string(43) "lMollit elit exercitation ullamco voluptate"
-  ["imagem"]=>
-  string(19) "tshirt_vermelha.png" tshirt_vermelha.png tshirt_vermelha.png
-  ["preco"]=>
-  string(6) "290.50"
-  ["stock"]=>
-  string(3) "100"
-  ["visivel"]=>
-  string(1) "1"
-  ["created_at"]=>
-  string(19) "2022-04-21 21:32:47"
-  ["updated_at"]=>
-  string(19) "2022-04-21 21:32:47"
-  ["deleted_at"]=>
-  NULL
-}
-            
-        
-
- -->

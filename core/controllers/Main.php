@@ -25,7 +25,7 @@ class Main
 
     public function store()
     {
-        
+       
         // TRAZER TODOS PRODUTOS
         $produtos = new Produtos();
 
@@ -34,7 +34,13 @@ class Main
                 $categoria = $_GET['c'];
             }
 
-        $store = $produtos->lista_produtos_disponiveis($categoria);
+        $lista_produtos = $produtos->lista_produtos_disponiveis($categoria);
+        $lista_categorias = $produtos->lista_categorias();
+
+        $dados = [
+            'produtos' => $lista_produtos,
+            'categorias' => $lista_categorias
+        ];
         
         Store::Layout([
             'layouts/html_header',
@@ -43,19 +49,7 @@ class Main
             'layouts/footer',
             'layouts/html_footer',
 
-        ],['produtos' => $store]);
-    }
-
-    public function carrinho()
-    {
-        Store::Layout([
-            'layouts/html_header',
-            'layouts/header',
-            'carrinho',
-            'layouts/footer',
-            'layouts/html_footer',
-
-        ]);
+        ], $dados);
     }
 
     public function novo_cliente()

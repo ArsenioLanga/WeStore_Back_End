@@ -4,7 +4,8 @@
 $rotas = [
     'index' => 'main@index',
     'store' => 'main@store',
-    'carrinho' => 'main@carrinho',
+    'adicionar_carrinho' => 'carrinho@adicionar_carrinho',
+    'carrinho' => 'carrinho@carrinho',
     'novo_cliente' => 'main@novo_cliente',
     'client_submit' => 'main@client_submit',
     'login' => 'main@login',
