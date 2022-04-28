@@ -1,6 +1,12 @@
 <?php 
     use core\classes\Store;
     // $_SESSION['cliente'] = "Langa";
+    $qtd_produtos = 0;
+        if(isset($_SESSION['carrinho'])){
+            foreach($_SESSION['carrinho'] as $produto_qtd){
+                $qtd_produtos += $produto_qtd;
+            }
+        }
 ?>
 <div class="container-fluid navegacao">
     <div class="row">
@@ -32,7 +38,7 @@
 
                 <?php endif; ?>
             <a href="?p=carrinho" class="nav-item"><i class="fas fa-shopping-cart"></i></a>
-            <span class="bagde bg-warning">10</span>
+            <span class="bagde bg-warning qtd" id="carrinho"><?= $qtd_produtos == 0 ? '' : $qtd_produtos ?> </span>
         </div>
     </div>
 </div>

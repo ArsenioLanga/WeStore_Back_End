@@ -1,9 +1,3 @@
-<?php 
-
-    print_r($_SESSION);
-
-?>
-
 <div class="container-fluid margin">
     <div class="row">
         <div class="col-12 text-center my-4">
@@ -31,10 +25,18 @@
                         <h2><?= preg_replace("/\./", ",", $produto['preco']. " MZN") ?></h2>
                         <!-- <p><small><?= $produto['descricao'] ?></small></p> -->
                         <div class="">
-                            <button class="btn btn-info" onclick="adicionar_carrinho(<?= $produto['id'] ?>)">
+                            <?php if($produto['stock'] <= 0) : ?>
+                                <button class="btn btn-danger">
+                                <i class="fa fa-shopping-cart"></i>
+                                Indisponivel
+                            </button>
+                            <?php else: ?>
+                                <button class="btn btn-info" onclick="adicionar_carrinho(<?= $produto['id'] ?>)">
                                 <i class="fa fa-shopping-cart"></i>
                                 Adicionar ao carinho
                             </button>
+                            <?php endif; ?>
+                           
                         </div>
                     </div>
                 </div>

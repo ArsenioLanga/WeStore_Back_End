@@ -40,4 +40,15 @@ class Produtos
         return $categorias;
     }
 
+    public function verificar_Id($id){
+        $db = new Database();
+        $params = [
+            ':id' => $id
+        ];
+        $resultado = $db->select("SELECT * FROM produtos WHERE id = :id AND stock > 0 AND visivel = 1", $params);
+        
+        return count($resultado) != 0 ? true : false;
+
+    }
+
 }
